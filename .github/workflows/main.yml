@@ -4,23 +4,23 @@ jobs:
   ci-job:
     runs-on: ubuntu-22.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v7
+      - name: checkout code
+        uses: actions/checkout@v4
       - name: set up java
-        uses: actions/checkout@v6
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '25'
+          java-version: '17'
           cache: 'maven'
-          cache-dependency-path: 'sub-project/pom.xml' # optional
+         
       - name: Build 
-        run: mvn compile
+        run: mvn clean compile
       
       - name: test
         run: mvn test
       
       - name: artifact
-        run: npm package
+        run: mvn package
     
       
   
